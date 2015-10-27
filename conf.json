@@ -1,0 +1,39 @@
+{
+  "port": 9301,
+  "cassandra": {
+    "seeds": ["localhost"],
+    "reconnect": {
+      "name": "exponential",
+      "base_delay": 1000,
+      "max_delay": 10000
+    }
+  },
+  "registry" :{
+
+    "objects" : [
+      {
+        "name" : "user",
+        "properties" : ["name"]
+      },
+      {
+        "name" : "place",
+        "properties" : ["name"]
+      }
+    ],
+
+    "connections" : [
+      {
+        "name" : "friend",
+        "directed" : false,
+        "multi" : false,
+        "pairs" : ["user:user"]
+      },
+      {
+        "name" : "check-in",
+        "directed" : false,
+        "multi" : true,
+        "pairs" : ["user:place"]
+      }
+    ]
+  }
+}
